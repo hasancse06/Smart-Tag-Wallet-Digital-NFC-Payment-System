@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title style="text-align: center;">Troubleshoot Connectivity</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-buttons slot="end" (click)="reloadPWA()">
+    <img src="assets/icon/reload-pwa.png">
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-content>
+            <p *ngIf="isInternetActive && networkName">Internet Status: <span style="color:#068338; font-weight: bold;">Connected</span></p>
+            <p *ngIf="!isInternetActive && networkName">Internet Status: <span style="color:#B21917; font-weight: bold;">No Internet</span></p>
+            <p *ngIf="isInternetActive && networkName">Current Network Type: <span style="text-transform: uppercase; font-weight: bold;">{{ networkName }} </span></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-content>
+            <p *ngIf="isNFCActive">NFC Status: <span style="color:#068338; font-weight: bold;">Enabled</span></p>
+            <p *ngIf="isNFCActive">Scan Your Wristband To Test NFC!</p>
+            <p *ngIf="tagUserName">Scan Successful, Your Wristband ID: {{ tagUserName }}</p>
+            <p *ngIf="!isNFCActive">NFC Status: <span style="color:#B21917; font-weight: bold;">Disabled</span></p>
+            <p *ngIf="!isNFCActive" style="height: 20px;"></p>
+            <ion-button *ngIf="!isNFCActive" color="dark" expand="block" (click)="showNFCSetting()">Open NFC Setting</ion-button>
+            <p *ngIf="!isNFCActive" style="height: 20px;"></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+   
+</ion-content>

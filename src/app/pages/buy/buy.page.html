@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title style="text-align: center;">Buy Items</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+  </ion-buttons>
+  <ion-buttons slot="end" (click)="reloadPWA()">
+    <img src="assets/icon/reload-pwa.png">
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="margin-top: 20px; color: #B21917; font-weight: bold; text-align: center;" *ngIf="NFCInitialised">
+    READY TO SCAN
+  </div> 
+  <div style="margin-top: 20px; color: #B21917; font-weight: bold; text-align: center;" *ngIf="NFCNotInitialised">
+    READER NOT INITIALIZED.<br>REFRESH PAGE OR TURN ON NFC.
+  </div>
+
+  <div *ngIf="formDisplay" style="height: 40px">
+  </div> 
+
+  <ion-grid *ngIf="formDisplay">
+    <ion-row>
+      <ion-col>
+        <ion-label>Enter Amount (KYD $)</ion-label>
+        <ion-input
+        class="input"
+        name="amount" 
+        required 
+        [(ngModel)]="amount"
+        type="number"
+        placeholder="$" 
+        (ionChange)="getCustomAmount($event)"
+        ></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div style="height: 40px">
+  </div> 
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nopadding">
+      <div class="itemContainerLeft" (click)="buyAmount('1')">
+        KYD $1
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nopadding">
+      <div class="itemContainerRight" (click)="buyAmount('3')">
+        KYD $3
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nopadding">
+      <div class="itemContainerRight" (click)="buyAmount('5')">
+        KYD $5
+      </div>
+    </div>
+  </div>
+  <div style="height: 2px">
+  </div> 
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nopadding">
+      <div class="itemContainerLeft" (click)="buyAmount('10')">
+        KYD $10
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nopadding">
+      <div class="itemContainerRight" (click)="buyAmount('20')">
+        KYD $20
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nopadding">
+      <div class="itemContainerRight" (click)="showForm()">
+        CUSTOM
+      </div>
+    </div>
+  </div>
+  <div style="height: 2px">
+  </div> 
+ 
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nopadding">
+      <div class="itemContainerLeftCustom" (click)="showForm()">
+        CUSTOM
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nopadding">
+      <div class="itemContainerRight" (click)="buyAmount('10')">
+        $10
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nopadding">
+      <div class="itemContainerRightTip" (click)="clear()">
+        RESET
+      </div>
+    </div>
+  </div>
+
+  <ion-grid *ngIf="amount || tipAmount">
+    <ion-row>
+      <ion-col>
+        <div class="amountContainer" *ngIf="!customerUserId"> 
+          <p style="padding-top: 17px;">Total Amount: KYD ${{ amount }} </p> 
+        </div>
+        <p *ngIf="!customerUserId">Please scan your Tag/Card Via NFC to buy!</p>
+
+        <p *ngIf="walletBalanceSpinner" class="spinnerSection" style="text-align: center;">
+          Loading Wallet Balance
+          <br>
+          <ion-spinner name="lines"></ion-spinner>
+        </p>
+        <p *ngIf="showWalletBalance">Current Wallet Balance: KYD ${{ walletBalance }}</p>
+        <p *ngIf="customerUserId">Currently Charging ID: {{ customerUserId }}</p>
+
+        <ion-button *ngIf="customerUserId" expand="block" [disabled]="disableBtn" (click)="buyItemNow()"
+        ><span><strong>COMPLETE CHARGE: KYD ${{ amount }}</strong></span
+        ><span *ngIf="spinner"><ion-spinner name="lines"></ion-spinner></span
+      ></ion-button>
+        <br>
+        <ion-button size="large" color="dark" [disabled]="disableBtn" (click)="clear()">CLEAR</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

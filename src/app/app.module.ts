@@ -8,6 +8,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
+import { IonicStorageModule } from '@ionic/storage';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { NFC, Ndef } from '@awesome-cordova-plugins/nfc/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Network } from '@ionic-native/network/ngx';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,11 +24,18 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    IonicStorageModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    SocialSharing,
+    NFC,
+    Ndef,
+    BarcodeScanner,
+    Network,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

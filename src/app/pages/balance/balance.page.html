@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title style="text-align: center;">Check Balance</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+  </ion-buttons>
+  <ion-buttons slot="end" (click)="reloadPWA()">
+    <img src="assets/icon/reload-pwa.png">
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div style="margin-top: 20px; color: #B21917; font-weight: bold; text-align: center;" *ngIf="NFCInitialised">
+    READY TO SCAN
+  </div> 
+  <div style="margin-top: 20px; color: #B21917; font-weight: bold; text-align: center;" *ngIf="NFCNotInitialised">
+    READER NOT INITIALIZED.<br>REFRESH PAGE OR TURN ON NFC.
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="spinner" class="spinnerSection" style="text-align: center;">
+            <ion-spinner name="lines"></ion-spinner>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!walletBalance">
+      <ion-col>
+        <ion-card color="primary">
+          <ion-card-header>
+            <ion-card-content style="color: #ffffff;">
+             Please scan your Tag/Card Via NFC to see your balance!
+            </ion-card-content>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="walletBalance">
+      <ion-col>
+        <ion-card color="primary">
+          <ion-card-header>
+            <ion-card-content>
+             Current Balance: KYD $ {{ walletBalance }}
+            </ion-card-content>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+
+</ion-content>

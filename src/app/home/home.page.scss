@@ -1,0 +1,32 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+ion-card {
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+ion-card-content {
+  font-size: 16px;
+}
+
+ion-col {
+  --ion-grid-column-padding: 0px;
+}
+
+.wallet-page {
+  --background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+
+.action-card {
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+}

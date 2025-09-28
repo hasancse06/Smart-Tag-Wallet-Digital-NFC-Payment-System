@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title style="text-align: center;">Login</ion-title>
+      <ion-buttons slot="start">
+        <ion-menu-button slot="start"></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="end" (click)="reloadPWA()">
+        <img src="assets/icon/reload-pwa.png">
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<div class="ion-padding">
+  
+  <h3 style="text-align: center;"> Shop Manager Login </h3>
+  <ion-grid>
+    <form #loginForm="ngForm">
+    <ion-row>
+      <ion-col>
+        <ion-input
+        class="input"
+        ngModel 
+        name="email" 
+        required 
+        #loginEmail="ngModel" 
+        [(ngModel)]="email"
+        type="email"
+        placeholder="Email"
+        ></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input
+        class="input"
+        ngModel 
+        name="password" 
+        required 
+        #loginPass="ngModel"  
+        [(ngModel)]="password"
+        type="password"
+        placeholder="Password"
+        class="input"
+        ></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col *ngIf="qrSignIn">
+        <p style="text-align: center;"> Signing You In... </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button
+          [disabled]="disableBtn"
+          expand="block"
+          (click)="signIn()"
+          color="primary"
+          ><strong>Sign In</strong
+          ><span *ngIf="spinner"><ion-spinner name="lines"></ion-spinner></span
+        ></ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button 
+          expand="block"
+          (click)="scanNow()"
+          color="primary" [disabled]="disableBtn"
+          ><strong>Scan To Login</strong
+          ><span *ngIf="scanSpinner"><ion-spinner name="lines"></ion-spinner></span
+        ></ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  </ion-grid>
+
+</div>
+</ion-content>
