@@ -1,8 +1,6 @@
-# SmartTag Wallet-Digital NFC Payment System
+# SmartTag Wallet – Digital NFC Payment System
 
-A **modern digital wallet system** built with **WordPress, WooCommerce, and Ionic Angular** that allows shop owners and managers to securely manage customer transactions using **NFC tags/cards**.  
-This project integrates with **TeraWallet** and extends its API using a custom plugin (**Woo Wallet API Extended**) to enable seamless **contactless payments, balance checking, and transaction history** through **Mifare Classic NFC cards**.  
-
+A free, open-source NFC-based digital wallet system built with WordPress, WooCommerce, and Ionic Angular. It allows shop owners and managers to securely manage customer transactions using Mifare Classic NFC tags/cards. Integrated with TeraWallet and a custom plugin (Woo Wallet API Extended) for contactless payments, balance check, and transaction history.
 ---
 
 ## 🚀 Features  
@@ -90,17 +88,9 @@ git clone https://github.com/YOUR_USERNAME/Smart-Tag-Wallet-Digital-NFC-Payment-
 cd Smart-Tag-Wallet-Digital-NFC-Payment-System
 ```
 
-## 🧠 SEO Keywords
-
-- Digital Wallet for Shop Owners
-- WooCommerce NFC Wallet 
-- WordPress NFC Wallet 
-- Ionic Angular Digital Wallet App  
-- RFID Payment System WooCommerce  
-- TeraWallet NFC Integration  
-- Contactless Payment App for WordPress  
-- Mifare Classic NFC Wallet App  
-
+## ScreenShots
+![ScreenShot](rfid-ss-2.png)
+![ScreenShot](rfid-ss-4.png)
 
    
 ## 🙌 Author
