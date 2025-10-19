@@ -16,7 +16,7 @@ export class WalletService {
   salesReport: any;
   apiUrl: string;
   siteURL = 'https://demo.hasan.online/github';
-  wavPOSAPI= '/wp-json/woo-wallet-api/v1/';
+  walletExAPI= '/wp-json/woo-wallet-api/v1/';
   walletNative = '/wp-json/wp/v2/'
 
   secretkey = 'xeQmNTm2Gfa7cDVwMhy2ny';
@@ -35,7 +35,7 @@ export class WalletService {
     return this.encryptedKey;
   }
 
-  // Common for all WavPOS Login - User Role API 
+  // Common for all Wallet Login - User Role API 
   getUserDataForLogin(currentUserId, email) {
     let headers = new HttpHeaders ({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -50,13 +50,12 @@ export class WalletService {
     //console.log('secretKey: ', secretKey);
 
     let dataObj = {
-      user_email: email,
       user_id: currentUserId,
       secret_key: secretKey
     };
 
     let finalDataObj = this.JSON_to_URLEncoded(dataObj);
-    this.apiUrl = `${this.siteURL}${this.wavPOSAPI}user-role`;
+    this.apiUrl = `${this.siteURL}${this.walletExAPI}user-role`;
     //console.log('getUserDataForLogin TC API URL: ', this.apiUrl);
     return new Promise((resolve) => {
       this.http.post(this.apiUrl, finalDataObj, {headers} ).subscribe((successResp) => {
@@ -65,7 +64,7 @@ export class WalletService {
     });
   }
 
-  // WavPOS Main App Only - Get Tag User ID from Username
+  // Wallet Main App Only - Get Tag User ID from Username
   getUserIdByUsername(username) {
     let headers = new HttpHeaders ({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -80,7 +79,7 @@ export class WalletService {
     };
 
     let finalDataObj = this.JSON_to_URLEncoded(dataObj);
-    this.apiUrl = `${this.siteURL}${this.wavPOSAPI}user-name`;
+    this.apiUrl = `${this.siteURL}${this.walletExAPI}user-name`;
     //console.log('getUserData TC API URL: ', this.apiUrl);
     return new Promise((resolve) => {
       this.http.post(this.apiUrl, finalDataObj, {headers} ).subscribe((successResp) => {
@@ -124,7 +123,7 @@ export class WalletService {
     dataObj.secret_key = secretKey;
 
     let orderDataObj = this.JSON_to_URLEncoded(dataObj);
-    this.apiUrl = `${this.siteURL}${this.wavPOSAPI}wallet-debit`;
+    this.apiUrl = `${this.siteURL}${this.walletExAPI}wallet-debit`;
     //console.log('API URL for topUp: ',this.apiUrl);
     return new Promise((resolve) => {
       this.http.post(this.apiUrl ,orderDataObj,{headers}).subscribe((successResp) =>{

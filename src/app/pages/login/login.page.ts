@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
   ionViewWillEnter(){
     if(localStorage.getItem('currentUserId')) {
       this.CFS.presentToast('You are logged in...!','bottom',2000);
-      this.router.navigateByUrl('/events');
+      this.router.navigateByUrl('/home');
     }
   }
 
@@ -97,7 +97,7 @@ export class LoginPage implements OnInit {
       this.disableBtn = true;
       if((this.CFS.validateEmail(this.email)) && (this.password) != ''){
         this.auth.login(this.email, this.password).then(responseData => {
-          console.log('Login Response:', responseData);
+          //console.log('Login Response:', responseData);
           if(responseData['token']){
             //console.log('Login Response:', responseData);
 
@@ -109,7 +109,7 @@ export class LoginPage implements OnInit {
             let currentUserId = decodedJwtData.data.user['id'];
             this.WL.getUserDataForLogin(currentUserId, this.email).then((data) => {
               this.currentUserData = data;
-              console.log('Current User Role: ',this.currentUserData);
+              //console.log('Current User Role: ',this.currentUserData);
               if(this.currentUserData.userRole == "administrator" || this.currentUserData.userRole == "shop_manager") {
                 this.CFS.presentToast('You are logged in...!', 'bottom', 2000);
                 localStorage.setItem('currentUserEmail', this.email.toLowerCase());
